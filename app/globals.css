@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --bg-surface: #fcfcfc;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-muted-heading: #999999;
+  --text-secondary: #737373;
+  --border-grid: #efefef;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-space-grotesk), sans-serif;
+    letter-spacing: -0.03em;
+  }
+}
+
+/* كلاس مساعد للعناوين الـ Two-Tone زي Aoutive بالظبط */
+.heading-muted {
+  color: var(--text-muted-heading);
+}
