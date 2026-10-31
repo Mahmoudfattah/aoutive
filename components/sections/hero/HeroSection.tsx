@@ -1,3 +1,4 @@
+// ============================================================================
 "use client";
 
 import React, { useRef } from "react";
@@ -29,23 +30,27 @@ export default function HeroSection() {
     <SectionWrapper
       id="hero"
       noPadding
+      
       className="px-3 sm:px-6 xl:px-0"
-      innerClassName="pt-14 pb-8 md:pt-16 md:pb-12"
+      innerClassName="pt-12 pb-12 lg:h-[803px] lg:pt-[68px] lg:pb-[80px]"
     >
-      <div ref={heroRef}>
-        {/* النص الأول من الشاشة: العنوان والوصف والزرارين */}
-        <div className="mx-auto max-w-2xl px-6 text-center sm:px-10">
-          <h1 className="hero-animate font-heading text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-[#1A1A1A] sm:text-5xl md:text-[48px]">
+      <div
+        ref={heroRef}
+        className="flex h-full flex-col justify-between "
+      >
+        {/* النص الأول من الشاشة: الكونتنت بارتفاع 239px وخلفية صريحة تغطي طرف الأنيميشن */}
+        <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col items-center justify-center bg-[#FCFCFC] px-6 text-center sm:px-10 lg:h-[229px]">
+          <h1 className="hero-animate font-heading text-3xl font-semibold leading-[1.02] tracking-[-0.05em] text-[#1A1A1A] sm:text-5xl md:text-[48px]">
             Build AI workflows that <br /> run{" "}
             <span className="text-[#999999]">your business</span>
           </h1>
 
-          <p className="hero-animate mx-auto mt-5 max-w-145 text-base font-medium leading-relaxed text-[#737373] sm:text-[17px]">
+          <p className="hero-animate mx-auto mt-4 max-w-[635px] text-base font-medium leading-[1.4] tracking-[-0.01em] text-[#737373]">
             Connect your tools, deploy autonomous AI agents, and automate
             complex workflows all from a single visual platform.
           </p>
 
-          <div className="hero-animate mt-8 flex flex-wrap items-center justify-center gap-3.5">
+          <div className="hero-animate mt-8 flex min-h-[48px] flex-wrap items-center justify-center gap-4">
             {/* Primary Button: Start Building */}
             <Link
               href="#features"
@@ -85,8 +90,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* النص التاني من الشاشة: أنيميشن خط الإنتاج بـ GSAP */}
-        <div className="mt-8 w-full">
+        {/* النص التاني من الشاشة: أنيميشن خط الإنتاج بارتفاع 399px وداخل سنة بسيطة تحت الكونتنت */}
+        <div className="relative z-0 -mt-3 w-full lg:mt-0">
           <HeroConveyorAnimation />
         </div>
       </div>

@@ -31,9 +31,9 @@ export default function Navbar() {
   return (
     <header
       ref={containerRef}
-      className="relative z-40 w-full border-b border-[#EFEFEF] bg-[#FCFCFC] px-5 sm:px-6 xl:px-0"
+      className="relative z-40 w-full border-b border-[#EFEFEF] bg-[#FCFCFC] px-3 sm:px-6 xl:px-0"
     >
-      <div className="mx-auto flex h-20 w-full max-w-306 items-center justify-between border-x border-[#EFEFEF] px-2 sm:px-2">
+      <div className="mx-auto  relative flex h-20 w-full max-w-306 items-center justify-between border-x border-[#EFEFEF] px-3 sm:px-3">
         {/* 1. Brand Logo (Geometric Cube SVG + Aoutive AI) */}
         <Link
           href="/"
@@ -100,6 +100,32 @@ export default function Navbar() {
             />
           </div>
         </button>
+
+        {/* علامات التقاطع السفلية للـ Navbar */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-[8.5px] -left-[8.5px] z-50 flex h-4 w-4 items-center justify-center text-[#1A1A1A] select-none"
+        >
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path
+              d="M5.5 0V11M0 5.5H11"
+              stroke="currentColor"
+              strokeWidth="1.2"
+            />
+          </svg>
+        </span>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-[8.5px] -right-[8.5px] z-50 flex h-4 w-4 items-center justify-center text-[#1A1A1A] select-none"
+        >
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path
+              d="M5.5 0V11M0 5.5H11"
+              stroke="currentColor"
+              strokeWidth="1.2"
+            />
+          </svg>
+        </span>
       </div>
 
       {/* 5. Mobile Dropdown Overlay Menu (Same Link & Button Animations + Visible border-x) */}

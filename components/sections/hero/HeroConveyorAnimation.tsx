@@ -1,3 +1,4 @@
+// ============================================================================
 "use client";
 
 import React, { useRef } from "react";
@@ -45,7 +46,12 @@ export default function HeroConveyorAnimation() {
         .to(tile0Ref.current, { x: 148, y: 83, duration: T_BELT * 0.2498 })
         .to(tile0Ref.current, { x: 221, y: 126, duration: T_BELT * 0.2498 })
         .set(tile0Ref.current, { x: 0, y: 0, opacity: 0 })
-        .to(tile0Ref.current, { x: 31.95, y: 18, opacity: 1, duration: T_BELT * 0.1082 });
+        .to(tile0Ref.current, {
+          x: 31.95,
+          y: 18,
+          opacity: 1,
+          duration: T_BELT * 0.1082,
+        });
 
       // Tile 1 (starts at Slot 1: x=240, y=75)
       const tlTile1 = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
@@ -55,9 +61,18 @@ export default function HeroConveyorAnimation() {
         .to(tile1Ref.current, { x: 150, y: 86, duration: T_BELT * 0.2498 })
         .to(tile1Ref.current, { x: 223, y: 129, duration: T_BELT * 0.2498 })
         .set(tile1Ref.current, { x: -71, y: -40, opacity: 0 })
-        .to(tile1Ref.current, { x: -39.05, y: -22, opacity: 1, duration: T_BELT * 0.108 })
+        .to(tile1Ref.current, {
+          x: -39.05,
+          y: -22,
+          opacity: 1,
+          duration: T_BELT * 0.108,
+        })
         .to(tile1Ref.current, { x: 0, y: 0, duration: T_BELT * 0.1322 })
-        .to(tile1Ref.current, { x: 32.02, y: 17.88, duration: T_BELT * 0.1083 });
+        .to(tile1Ref.current, {
+          x: 32.02,
+          y: 17.88,
+          duration: T_BELT * 0.1083,
+        });
 
       // Tile 2 (starts at Slot 2: x=317, y=118)
       const tlTile2 = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
@@ -66,7 +81,12 @@ export default function HeroConveyorAnimation() {
         .to(tile2Ref.current, { x: 73, y: 43, duration: T_BELT * 0.1417 })
         .to(tile2Ref.current, { x: 146, y: 86, duration: T_BELT * 0.2498 })
         .set(tile2Ref.current, { x: -148, y: -83, opacity: 0 })
-        .to(tile2Ref.current, { x: -116.05, y: -65, opacity: 1, duration: T_BELT * 0.108 })
+        .to(tile2Ref.current, {
+          x: -116.05,
+          y: -65,
+          opacity: 1,
+          duration: T_BELT * 0.108,
+        })
         .to(tile2Ref.current, { x: -77, y: -43, duration: T_BELT * 0.1322 })
         .to(tile2Ref.current, { x: 0, y: 0, duration: T_BELT * 0.26 })
         .to(tile2Ref.current, { x: 31.6, y: 18.61, duration: T_BELT * 0.1083 });
@@ -77,7 +97,12 @@ export default function HeroConveyorAnimation() {
         .set(tile3Ref.current, { x: 31.6, y: 18.61, opacity: 1 })
         .to(tile3Ref.current, { x: 73, y: 43, duration: T_BELT * 0.1417 })
         .set(tile3Ref.current, { x: -221, y: -126, opacity: 0 })
-        .to(tile3Ref.current, { x: -189.05, y: -108, opacity: 1, duration: T_BELT * 0.108 })
+        .to(tile3Ref.current, {
+          x: -189.05,
+          y: -108,
+          opacity: 1,
+          duration: T_BELT * 0.108,
+        })
         .to(tile3Ref.current, { x: -150, y: -86, duration: T_BELT * 0.1322 })
         .to(tile3Ref.current, { x: -73, y: -43, duration: T_BELT * 0.26 })
         .to(tile3Ref.current, { x: 0, y: 0, duration: T_BELT * 0.2498 })
@@ -97,50 +122,63 @@ export default function HeroConveyorAnimation() {
       tlOut.set(midOpacityRef.current, { opacity: 1 }, 0);
       tlOut.set(doneMidRef.current, { x: 157, y: -95.5, opacity: 0 }, 0);
       tlOut.set(cardDoneRef.current, { x: 0, y: 0, opacity: 1 }, 0);
-      tlOut.set(pingRef.current, { scale: 0.55, opacity: 0, transformOrigin: "50% 50%" }, 0);
+      tlOut.set(
+        pingRef.current,
+        { scale: 0.55, opacity: 0, transformOrigin: "50% 50%" },
+        0,
+      );
       tlOut.set(dotRef.current, { x: 646, y: 373, opacity: 0 }, 0);
 
       // Step A: Machine Top Radar Ping (25% -> 44% of cycle)
       tlOut.to(
         pingRef.current,
         { opacity: 0.5, duration: T_OUT * 0.0238, ease: "power1.out" },
-        T_OUT * 0.25
+        T_OUT * 0.25,
       );
       tlOut.to(
         pingRef.current,
-        { scale: 1.45, opacity: 0, duration: T_OUT * 0.1667, ease: "power2.out" },
-        T_OUT * 0.2738
+        {
+          scale: 1.45,
+          opacity: 0,
+          duration: T_OUT * 0.1667,
+          ease: "power2.out",
+        },
+        T_OUT * 0.2738,
       );
 
       // Step B: Signal Dot travels along wire from Machine (646,373) to Middle Card (733,423)
       tlOut.to(
         dotRef.current,
         { x: 651, y: 376, opacity: 1, duration: T_OUT * 0.0238, ease: "none" },
-        T_OUT * 0.2857
+        T_OUT * 0.2857,
       );
       tlOut.to(
         dotRef.current,
         { x: 728, y: 420, opacity: 1, duration: T_OUT * 0.0833, ease: "none" },
-        T_OUT * 0.3095
+        T_OUT * 0.3095,
       );
       tlOut.to(
         dotRef.current,
         { x: 733, y: 423, opacity: 0, duration: T_OUT * 0.0238, ease: "none" },
-        T_OUT * 0.3928
+        T_OUT * 0.3928,
       );
 
       // Step C: Middle White Skeleton Card transforms into "Completed" Card! (41.9% -> 53%)
       tlOut.to(
         midRef.current,
         { x: -11, y: 9, duration: T_OUT * 0.0762, ease: "power2.in" },
-        T_OUT * 0.419
+        T_OUT * 0.419,
       );
       tlOut.to(
         midOpacityRef.current,
         { opacity: 0, duration: T_OUT * 0.0762, ease: "power2.in" },
-        T_OUT * 0.419
+        T_OUT * 0.419,
       );
-      tlOut.set(doneMidRef.current, { x: 168, y: -104.5, opacity: 0 }, T_OUT * 0.419);
+      tlOut.set(
+        doneMidRef.current,
+        { x: 168, y: -104.5, opacity: 0 },
+        T_OUT * 0.419,
+      );
       tlOut.to(
         doneMidRef.current,
         {
@@ -150,7 +188,7 @@ export default function HeroConveyorAnimation() {
           duration: T_OUT * 0.1114,
           ease: "back.out(1.7)",
         },
-        T_OUT * 0.419
+        T_OUT * 0.419,
       );
 
       // Step D: All Output Cards Shift Down-Left by 1 Slot (68.47% -> 94.89%)
@@ -158,25 +196,51 @@ export default function HeroConveyorAnimation() {
       const shiftDur = T_OUT * 0.2642;
 
       tlOut.set(midRef.current, { x: 153, y: -92 }, shiftStart);
-      tlOut.to(farBRef.current, { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" }, shiftStart);
-      tlOut.to(farBOpacityRef.current, { opacity: 1, duration: shiftDur, ease: "power3.inOut" }, shiftStart);
-      tlOut.to(farARef.current, { x: -153, y: 92, duration: shiftDur, ease: "power3.inOut" }, shiftStart);
+      tlOut.to(
+        farBRef.current,
+        { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" },
+        shiftStart,
+      );
+      tlOut.to(
+        farBOpacityRef.current,
+        { opacity: 1, duration: shiftDur, ease: "power3.inOut" },
+        shiftStart,
+      );
+      tlOut.to(
+        farARef.current,
+        { x: -153, y: 92, duration: shiftDur, ease: "power3.inOut" },
+        shiftStart,
+      );
       tlOut.to(
         farAOpacityRef.current,
         { opacity: 0, duration: T_OUT * 0.1453, ease: "power1.inOut" },
-        T_OUT * 0.764
+        T_OUT * 0.764,
       );
-      tlOut.to(midRef.current, { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" }, shiftStart);
+      tlOut.to(
+        midRef.current,
+        { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" },
+        shiftStart,
+      );
       tlOut.to(
         midOpacityRef.current,
         { opacity: 1, duration: T_OUT * 0.1453, ease: "power1.inOut" },
-        T_OUT * 0.7243
+        T_OUT * 0.7243,
       );
-      tlOut.to(doneMidRef.current, { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" }, shiftStart);
+      tlOut.to(
+        doneMidRef.current,
+        { x: 0, y: 0, duration: shiftDur, ease: "power3.inOut" },
+        shiftStart,
+      );
       tlOut.to(
         cardDoneRef.current,
-        { x: -157, y: 94.5, opacity: 0, duration: shiftDur, ease: "power3.inOut" },
-        shiftStart
+        {
+          x: -157,
+          y: 94.5,
+          opacity: 0,
+          duration: shiftDur,
+          ease: "power3.inOut",
+        },
+        shiftStart,
       );
 
       // Step E: Seamless Reset at 95.07% for next loop
@@ -185,20 +249,24 @@ export default function HeroConveyorAnimation() {
       tlOut.set(farBOpacityRef.current, { opacity: 0 }, resetTime);
       tlOut.set(farARef.current, { x: 0, y: 0 }, resetTime);
       tlOut.set(farAOpacityRef.current, { opacity: 1 }, resetTime);
-      tlOut.set(doneMidRef.current, { x: 157, y: -95.5, opacity: 0 }, resetTime);
+      tlOut.set(
+        doneMidRef.current,
+        { x: 157, y: -95.5, opacity: 0 },
+        resetTime,
+      );
       tlOut.set(cardDoneRef.current, { x: 0, y: 0, opacity: 1 }, resetTime);
       tlOut.to({}, { duration: T_OUT * 0.0493 }, resetTime);
     },
-    { scope: svgRef }
+    { scope: svgRef },
   );
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative h-[250px] w-full overflow-hidden sm:h-[310px] lg:h-[399px]">
       <svg
         ref={svgRef}
         viewBox="0 0 1219 648"
         preserveAspectRatio="xMidYMid slice"
-        className="block h-auto w-full select-none"
+        className="block h-full w-full select-none"
       >
         <defs>
           <clipPath id="aoutive-door-clip">
@@ -222,44 +290,119 @@ export default function HeroConveyorAnimation() {
         {/* 2. Clipped Input Stream (Black App Cards) */}
         <g clipPath="url(#aoutive-door-clip)">
           <g ref={tile0Ref}>
-            <polygon points="144,121 169,107 177,112 152,126" fill="rgba(0,0,0,0.09)" />
-            <image href="/images/hero/card-video.png" x="169" y="35" width="70" height="105" preserveAspectRatio="none" />
+            <polygon
+              points="144,121 169,107 177,112 152,126"
+              fill="rgba(0,0,0,0.09)"
+            />
+            <image
+              href="/images/hero/card-video.png"
+              x="169"
+              y="35"
+              width="70"
+              height="105"
+              preserveAspectRatio="none"
+            />
           </g>
           <g ref={tile1Ref}>
-            <polygon points="215,161 240,147 248,152 223,166" fill="rgba(0,0,0,0.09)" />
-            <image href="/images/hero/card-mail.png" x="240" y="75" width="70" height="105" preserveAspectRatio="none" />
+            <polygon
+              points="215,161 240,147 248,152 223,166"
+              fill="rgba(0,0,0,0.09)"
+            />
+            <image
+              href="/images/hero/card-mail.png"
+              x="240"
+              y="75"
+              width="70"
+              height="105"
+              preserveAspectRatio="none"
+            />
           </g>
           <g ref={tile2Ref}>
-            <polygon points="292,204 317,190 325,195 300,209" fill="rgba(0,0,0,0.09)" />
-            <image href="/images/hero/card-slack.png" x="317" y="118" width="70" height="105" preserveAspectRatio="none" />
+            <polygon
+              points="292,204 317,190 325,195 300,209"
+              fill="rgba(0,0,0,0.09)"
+            />
+            <image
+              href="/images/hero/card-slack.png"
+              x="317"
+              y="118"
+              width="70"
+              height="105"
+              preserveAspectRatio="none"
+            />
           </g>
           <g ref={tile3Ref}>
-            <polygon points="365,247 390,233 398,238 373,252" fill="rgba(0,0,0,0.09)" />
-            <image href="/images/hero/card-video.png" x="390" y="161" width="70" height="105" preserveAspectRatio="none" />
+            <polygon
+              points="365,247 390,233 398,238 373,252"
+              fill="rgba(0,0,0,0.09)"
+            />
+            <image
+              href="/images/hero/card-video.png"
+              x="390"
+              y="161"
+              width="70"
+              height="105"
+              preserveAspectRatio="none"
+            />
           </g>
         </g>
 
         {/* 3. Output Queue (White Skeleton -> Completed Workflow Executed) */}
         <g ref={farBRef}>
           <g ref={farBOpacityRef} style={{ opacity: 0 }}>
-            <image href="/images/hero/card-skeleton.png" x="828" y="292" width="262" height="175" preserveAspectRatio="none" />
+            <image
+              href="/images/hero/card-skeleton.png"
+              x="828"
+              y="292"
+              width="262"
+              height="175"
+              preserveAspectRatio="none"
+            />
           </g>
         </g>
         <g ref={farARef}>
           <g ref={farAOpacityRef}>
-            <image href="/images/hero/card-skeleton.png" x="828" y="292" width="262" height="175" preserveAspectRatio="none" />
+            <image
+              href="/images/hero/card-skeleton.png"
+              x="828"
+              y="292"
+              width="262"
+              height="175"
+              preserveAspectRatio="none"
+            />
           </g>
         </g>
         <g ref={midRef}>
           <g ref={midOpacityRef}>
-            <image href="/images/hero/card-skeleton.png" x="677" y="388" width="244" height="167" preserveAspectRatio="none" />
+            <image
+              href="/images/hero/card-skeleton.png"
+              x="677"
+              y="388"
+              width="244"
+              height="167"
+              preserveAspectRatio="none"
+            />
           </g>
         </g>
         <g ref={doneMidRef} style={{ opacity: 0 }}>
-          <image href="/images/hero/card-completed.png" x="520" y="483" width="244" height="165" preserveAspectRatio="none" />
+          <image
+            href="/images/hero/card-completed.png"
+            x="520"
+            y="483"
+            width="244"
+            height="165"
+            preserveAspectRatio="none"
+          />
         </g>
         <g ref={cardDoneRef}>
-          <image href="/images/hero/card-completed.png" x="520" y="483" width="244" height="165" preserveAspectRatio="none" />
+          <image
+            href="/images/hero/card-completed.png"
+            x="520"
+            y="483"
+            width="244"
+            height="165"
+            preserveAspectRatio="none"
+          />
         </g>
 
         {/* 4. Radar Ping & Wire Dot */}
@@ -272,9 +415,20 @@ export default function HeroConveyorAnimation() {
           fill="none"
           stroke="#1A1A1A"
           strokeWidth="1.2"
-          style={{ opacity: 0, transformBox: "fill-box", transformOrigin: "center" }}
+          style={{
+            opacity: 0,
+            transformBox: "fill-box",
+            transformOrigin: "center",
+          }}
         />
-        <circle ref={dotRef} cx="0" cy="0" r="3.4" fill="#1A1A1A" style={{ opacity: 0 }} />
+        <circle
+          ref={dotRef}
+          cx="0"
+          cy="0"
+          r="3.4"
+          fill="#1A1A1A"
+          style={{ opacity: 0 }}
+        />
       </svg>
     </div>
   );

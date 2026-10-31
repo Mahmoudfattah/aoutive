@@ -14,7 +14,7 @@ function CrosshairIcon({ className }: { className: string }) {
   return (
     <span
       aria-hidden="true"
-      className={`pointer-events-none absolute z-20 flex h-4 w-4 items-center justify-center text-[#B5B5B5] select-none ${className}`}
+      className={`pointer-events-none absolute z-20 flex h-4 w-4 items-center justify-center text-[#1A1A1A] select-none ${className}`}
     >
       <svg
         width="11"
@@ -23,11 +23,7 @@ function CrosshairIcon({ className }: { className: string }) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M5.5 0V11M0 5.5H11"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        />
+        <path d="M5.5 0V11M0 5.5H11" stroke="currentColor" strokeWidth="1.2" />
       </svg>
     </span>
   );
