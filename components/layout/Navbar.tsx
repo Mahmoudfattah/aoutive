@@ -18,11 +18,12 @@ export default function Navbar() {
   // أنيميشن ظهور الـ Navbar عند التحميل فقط
   useGSAP(
     () => {
-      gsap.from(containerRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+      // بنستعمل gsap.to عشان يحركه من حالته المخفية (اللي معمول لها تحديد في الـ className) لمكانه الطبيعي
+      gsap.to(containerRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1.3,
+        ease: "power4.out(1)",
       });
     },
     { scope: containerRef },
@@ -31,7 +32,8 @@ export default function Navbar() {
   return (
     <header
       ref={containerRef}
-      className="relative z-40 w-full border-b border-[#EFEFEF] bg-[#FCFCFC] px-3 sm:px-6 xl:px-0"
+      // الحل هنا: أضفنا -translate-y-[100px] و opacity-0 في الـ className عشان يبدأ مخفي تماماً قبل حتى ما الجافا سكريبت تشتغل
+      className="relative z-40 w-full border-b border-[#EFEFEF] bg-[#FCFCFC] px-3 sm:px-6 xl:px-0 -translate-y-[100px] opacity-0"
     >
       <div className="mx-auto  relative flex h-20 w-full max-w-306 items-center justify-between border-x border-[#EFEFEF] px-3 sm:px-3">
         {/* 1. Brand Logo (Geometric Cube SVG + Aoutive AI) */}
@@ -156,7 +158,7 @@ export default function Navbar() {
   );
 }
 
-// مكون فرعي لإدارة أنيميشن الـ Underline لكل لينك بـ GSAP بشكل مستقل (يشتغل في الديسكتوب والموبايل)
+// مكون فرعي لإدارة أنيميشن الـ Underline لكل لينك بـ GSAP بشكل مستقل
 function NavLinkItem({
   item,
   onClick,
@@ -171,7 +173,7 @@ function NavLinkItem({
   const handleMouseEnter = () => {
     gsap.to(lineRef.current, {
       scaleX: 1,
-      transformOrigin: "left center", // يبدأ الظهور من الشمال لليمين
+      transformOrigin: "left center",
       duration: 0.6,
       ease: "power2.out",
     });
@@ -180,7 +182,7 @@ function NavLinkItem({
   const handleMouseLeave = () => {
     gsap.to(lineRef.current, {
       scaleX: 0,
-      transformOrigin: "right center", // ينكمش ناحية اليمين عند الخروج
+      transformOrigin: "right center",
       duration: 0.6,
       ease: "power2.out",
     });
@@ -196,7 +198,6 @@ function NavLinkItem({
     >
       {item.label}
 
-      {/* خط الـ Underline المتحرك */}
       <div
         ref={lineRef}
         className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[#1A1A1A]"
@@ -205,7 +206,7 @@ function NavLinkItem({
   );
 }
 
-// مكون فرعي لزرار Get Started بنفس أنيميشن الـ Text Roll (يشتغل في الديسكتوب والموبايل)
+// مكون فرعي لزرار Get Started
 function GetStartedButton({
   href,
   onClick,
@@ -221,12 +222,10 @@ function GetStartedButton({
       onClick={onClick}
       className={`group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-[4px] bg-[#1A1A1A] px-[23px] py-2 text-sm font-medium whitespace-nowrap text-white transition-colors duration-500 ease-in-out hover:bg-[#404040] ${className}`}
     >
-      {/* النص الأساسي (يصعد للأعلى ويختفي عند الهوفر) */}
       <span className="inline-block transition-all duration-500 ease-in-out group-hover:translate-y-[-150%]">
         Get Started
       </span>
 
-      {/* النص البديل (يصعد من الأسفل ليستقر في المنتصف) */}
       <span className="absolute inline-block translate-y-full opacity-0 transition-all duration-500 ease-in-out group-hover:translate-y-0 group-hover:opacity-100">
         Get Started
       </span>
