@@ -115,11 +115,18 @@ export default function TrustedBySection() {
 
   useGSAP(
     () => {
+
+        gsap.to(".textdesc", {
+            opacity : 1,
+            delay : 1.6
+        })
       // تطبيق حركة الـ Infinite Marquee بـ GSAP تماماً كالمثال المطلوب
       tweenRef.current = gsap.to(".ticker-track", {
         xPercent: -50,
         repeat: -1,
-        duration: 10,
+        opacity : 1,
+        delay: 1.7,
+        duration: 15,
         ease: "none",
       });
     },
@@ -148,7 +155,7 @@ export default function TrustedBySection() {
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-5.5">
         {/* العنوان الفرعي */}
-        <p className="text-center text-[18px] font-semibold tracking-[-0.01em] text-[#4d4d4d] -mt-3!">
+        <p className="text-center textdesc text-[18px] font-semibold tracking-[-0.01em] opacity-0 text-[#4d4d4d] -mt-3!">
           Trusted by Leading Team
         </p>
 
@@ -163,7 +170,7 @@ export default function TrustedBySection() {
             maskImage:
               "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           }}
-          className="relative w-full overflow-hidden"
+          className="relative w-full opacity-0 overflow-hidden"
         >
           <div className="ticker-track flex w-max items-center gap-12 pr-12 will-change-transform sm:gap-16 sm:pr-16">
             {/* تكرار المصفوفة مرتين لخلق شريط مستمر ودائري بدون انقطاع */}
