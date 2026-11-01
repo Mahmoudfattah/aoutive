@@ -10,8 +10,8 @@ import HeroConveyorAnimation from "./HeroConveyorAnimation";
 gsap.registerPlugin(useGSAP);
 
 // أبعاد شبكة البكسلات فوق المكنة (20 عمود × 8 صفوف = 160 مربع مصمت بدون حواف)
-const GRID_COLS = 20;
-const GRID_ROWS = 8;
+const GRID_COLS = 36;
+const GRID_ROWS = 16;
 const TOTAL_SQUARES = GRID_COLS * GRID_ROWS;
 
 export default function HeroSection() {
@@ -24,7 +24,7 @@ export default function HeroSection() {
         defaults: { ease: "power3.out" },
         delay: 0.2,
       });
-
+      
       // 1. أنيميشن كلمات العنوان بالـ Blur (ثابت زي ما هو)
       tl.fromTo(
         ".hero-word",
@@ -47,13 +47,15 @@ export default function HeroSection() {
         // 3. ظهور الأزرار (ثابت زي ما هو)
         .fromTo(
           ".hero-btn",
-          { opacity: 0, y: 16, filter: "blur(4px)" },
+          { opacity: 0, y: 12, filter: "blur(4px)" },
           {
             opacity: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 0.65,
-            stagger: 0.1,
+            stagger: 0.09,
+            ease: "expo.out",
+            force3D: true,
           },
           "-=0.5",
         )
@@ -135,7 +137,7 @@ export default function HeroSection() {
           <div className="mt-8 flex min-h-[48px] flex-wrap items-center justify-center gap-4">
             <Link
               href="#features"
-              className="hero-btn group relative inline-flex h-11 translate-y-[16px] items-center justify-center overflow-hidden rounded-[4px] bg-[#1A1A1A] px-6 py-2.5 text-sm font-medium whitespace-nowrap text-white opacity-0 blur-[4px] transition-colors duration-500 ease-in-out hover:bg-[#404040]"
+              className="hero-btn group relative inline-flex h-11 translate-y-[12px] items-center justify-center overflow-hidden rounded-[4px] bg-[#1A1A1A] px-6 py-2.5 text-sm font-medium whitespace-nowrap text-white opacity-0 blur-[4px] transition-colors duration-500 ease-in-out hover:bg-[#404040]"
             >
               <span className="inline-block transition-all duration-500 ease-in-out group-hover:translate-y-[-150%]">
                 Start Building
@@ -147,7 +149,7 @@ export default function HeroSection() {
 
             <Link
               href="#how-it-works"
-              className="hero-btn group relative inline-flex h-11 translate-y-[16px] items-center justify-center gap-2.5 overflow-hidden rounded-[4px] border border-[#E5E5E5] bg-[#F3F3F3] px-5 py-2.5 text-sm font-medium whitespace-nowrap text-[#1A1A1A] opacity-0 blur-[4px] transition-colors duration-300 hover:bg-[#EAEAEA]"
+              className="hero-btn group relative inline-flex h-11 translate-y-[12px] items-center justify-center gap-2.5 overflow-hidden rounded-[4px] border border-[#E5E5E5] bg-[#F3F3F3] px-5 py-2.5 text-sm font-medium whitespace-nowrap text-[#1A1A1A] opacity-0 blur-[4px] transition-colors duration-300 hover:bg-[#EAEAEA]"
             >
               <svg
                 width="11"
