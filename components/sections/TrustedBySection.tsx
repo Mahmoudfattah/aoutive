@@ -7,9 +7,6 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(useGSAP);
 
-// ============================================================================
-// بيانات وشعارات البراندات السبعة الأصلية في موقع Aoutive AI
-// ============================================================================
 interface BrandLogo {
   name: string;
   icon: React.ReactNode;
@@ -104,28 +101,24 @@ const BRAND_LOGOS: BrandLogo[] = [
   },
 ];
 
-// ============================================================================
-// مكون TrustedBySection الأساسي مع تطبيق GSAP Infinite Marquee
-// ============================================================================
-
-
 export default function TrustedBySection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
 
   useGSAP(
     () => {
+      // إظهار العنوان وشريط اللوجوهات بنعومة باستخدام gsap.to للتأكد من كسر الـ opacity-0 الخاصة بالـ Tailwind
+      gsap.to([textRef.current, containerRef.current], {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      });
 
-        gsap.to(".textdesc", {
-            opacity : 1,
-            delay : 1.6
-        })
-      // تطبيق حركة الـ Infinite Marquee بـ GSAP تماماً كالمثال المطلوب
+      // تطبيق حركة الـ Infinite Marquee
       tweenRef.current = gsap.to(".ticker-track", {
         xPercent: -50,
         repeat: -1,
-        opacity : 1,
-        delay: 1.7,
         duration: 15,
         ease: "none",
       });
@@ -134,12 +127,10 @@ export default function TrustedBySection() {
   );
 
   const handleMouseEnter = () => {
-    // إيقاف أو إبطاء الحركة عند مرور الماوس
     tweenRef.current?.pause();
   };
 
   const handleMouseLeave = () => {
-    // استئناف الحركة عند خروج الماوس
     tweenRef.current?.play();
   };
 
@@ -151,15 +142,13 @@ export default function TrustedBySection() {
       className="px-3 sm:px-6 xl:px-0"
       innerClassName="px-5 py-12 sm:px-7 md:h-[185px] flex flex-col justify-center"
     >
-
-
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-5.5">
-        {/* العنوان الفرعي */}
-        <p className="text-center textdesc text-[18px] font-semibold tracking-[-0.01em] opacity-0 text-[#4d4d4d] -mt-3!">
+        {/* العنوان الفرعي (بدون opacity-0 في كلاس الـ Tailwind لضمان ظهوره السليم) */}
+        <p ref={textRef} className="text-center textdesc text-[18px] font-semibold tracking-[-0.01em] opacity-0 text-[#4d4d4d] -mt-3!">
           Trusted by Leading Team
         </p>
 
-        {/* شريط اللوجوهات المتحرك مع Mask متدرج على الأطراف */}
+        {/* شريط اللوجوهات المتحرك */}
         <div
           ref={containerRef}
           onMouseEnter={handleMouseEnter}
@@ -173,7 +162,6 @@ export default function TrustedBySection() {
           className="relative w-full opacity-0 overflow-hidden"
         >
           <div className="ticker-track flex w-max items-center gap-12 pr-12 will-change-transform sm:gap-16 sm:pr-16">
-            {/* تكرار المصفوفة مرتين لخلق شريط مستمر ودائري بدون انقطاع */}
             {[...BRAND_LOGOS, ...BRAND_LOGOS].map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
