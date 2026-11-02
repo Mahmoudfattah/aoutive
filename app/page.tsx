@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import FeaturesTabsSection from "@/components/sections/FeaturesTabsSection";
 import HeroSection from "@/components/sections/hero/HeroSection";
+import InfrastructureSection from "@/components/sections/InfrastructureSection";
 import TrustedBySection from "@/components/sections/TrustedBySection";
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
         <HeroSection />
         <TrustedBySection />
         <FeaturesTabsSection />
-        <FeaturesTabsSection />
+        <InfrastructureSection />
       </main>
     </div>
   );

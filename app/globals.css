@@ -31,3 +31,6 @@
 .heading-muted {
   color: var(--text-muted-heading);
 }
+button {
+  cursor: pointer;
+}

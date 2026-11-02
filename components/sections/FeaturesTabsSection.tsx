@@ -121,6 +121,7 @@ export default function WorkflowEngineSection() {
             each: 0.03, // تتابع سريع يخلي الحرفين اللي عليه الدور هما بس اللي بيغمقوا
           },
         });
+        
       }
     },
     { scope: sectionRef },
