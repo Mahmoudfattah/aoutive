@@ -69,6 +69,7 @@ export default function UseCasesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const row1GridRef = useRef<HTMLDivElement>(null);
   const row2GridRef = useRef<HTMLDivElement>(null);
+  const scrollTextRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -364,6 +365,50 @@ export default function UseCasesSection() {
   const row1Items = USE_CASES_DATA.filter((item) => item.row === 1);
   const row2Items = USE_CASES_DATA.filter((item) => item.row === 2);
 
+
+   useGSAP(
+      () => {
+        // Scroll-driven Character Color Reveal (تأثير ضيق يركز على حرف أو حرفين)
+        const chars = scrollTextRef.current?.querySelectorAll(".scroll-char");
+  
+        if (chars && chars.length > 0) {
+          // نستخدم timeline مع scrub وتعديل الـ duration و stagger عشان يكون التأثير حاد ومحصور
+          const colorTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: scrollTextRef.current,
+              start: "top 75%",
+              end: "top 35%", // نطاق سكرول أقصر عشان الحركة تبقى مركزة وسريعة على الحروف
+              scrub: true,
+            },
+          });
+  
+          colorTl.to(chars, {
+            color: "#1A1A1A",
+            duration: 0.2, // مدة قصيرة جداً لكل حرف عشان ميحصلش تداخل كبير
+            stagger: {
+              each: 0.03, // تتابع سريع يخلي الحرفين اللي عليه الدور هما بس اللي بيغمقوا
+            },
+          });
+        }
+      },
+      { scope: sectionRef },
+    );
+
+     const renderSplitChars = (text: string) => {
+       return text.split("").map((char, i) => (
+         <span
+           key={i}
+           className="scroll-char inline-block"
+           style={{
+             color: "#999999",
+             whiteSpace: char === " " ? "pre" : "normal",
+           }}
+         >
+           {char === " " ? "\u00A0" : char}
+         </span>
+       ));
+     };
+
   return (
     <SectionWrapper
       id="use-cases"
@@ -378,9 +423,14 @@ export default function UseCasesSection() {
             Use Cases
           </span>
 
-          <h2 className="uc-header-item mx-auto mt-2 max-w-3xl font-heading text-3xl font-semibold leading-[1.06] tracking-[-0.04em] text-[#1A1A1A] sm:text-4xl md:text-[44px]">
+          <h2
+            className="uc-header-item mx-auto mt-2 max-w-3xl font-heading text-3xl font-semibold leading-[1.06] tracking-[-0.04em] text-[#1A1A1A] sm:text-4xl md:text-[44px]"
+            ref={scrollTextRef}
+          >
             Automate workflows{" "}
-            <span className="text-[#999999]">across your entire business</span>
+            <span className="text-[#999999]">
+              {renderSplitChars("acrossyour entire business")}{" "}
+            </span>
           </h2>
 
           <p className="uc-header-item mx-auto mt-3.5 max-w-[690px] text-sm font-medium leading-[1.55] tracking-[-0.01em] text-[#737373] sm:text-base">
