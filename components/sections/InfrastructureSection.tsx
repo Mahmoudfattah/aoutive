@@ -86,36 +86,33 @@ export default function InfrastructureSection() {
     },
   );
 
-
-
-   useGSAP(()=>{
+  useGSAP(
+    () => {
       // Scroll-driven Character Color Reveal (تأثير ضيق يركز على حرف أو حرفين)
       const chars = scrollTextRef.current?.querySelectorAll(".scroll-char");
 
+      if (chars && chars.length > 0) {
+        // نستخدم timeline مع scrub وتعديل الـ duration و stagger عشان يكون التأثير حاد ومحصور
+        const colorTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: scrollTextRef.current,
+            start: "top 75%",
+            end: "top 35%", // نطاق سكرول أقصر عشان الحركة تبقى مركزة وسريعة على الحروف
+            scrub: true,
+          },
+        });
 
-
-        if (chars && chars.length > 0) {
-              // نستخدم timeline مع scrub وتعديل الـ duration و stagger عشان يكون التأثير حاد ومحصور
-              const colorTl = gsap.timeline({
-                scrollTrigger: {
-                  trigger: scrollTextRef.current,
-                  start: "top 75%",
-                  end: "top 35%", // نطاق سكرول أقصر عشان الحركة تبقى مركزة وسريعة على الحروف
-                  scrub: true,
-                },
-              });
-      
-              colorTl.to(chars, {
-                color: "#1A1A1A",
-                duration: 0.2, // مدة قصيرة جداً لكل حرف عشان ميحصلش تداخل كبير
-                stagger: {
-                  each: 0.03, // تتابع سريع يخلي الحرفين اللي عليه الدور هما بس اللي بيغمقوا
-                },
-              });
-
-      
-   }
-   }, {scope: sectionRef})
+        colorTl.to(chars, {
+          color: "#1A1A1A",
+          duration: 0.2, // مدة قصيرة جداً لكل حرف عشان ميحصلش تداخل كبير
+          stagger: {
+            each: 0.03, // تتابع سريع يخلي الحرفين اللي عليه الدور هما بس اللي بيغمقوا
+          },
+        });
+      }
+    },
+    { scope: sectionRef },
+  );
 
   // Keep exactly one autoplay tween alive. When the item changes or the user
   // clicks an item, the previous tween is reverted before the new 4s timer starts.
@@ -154,8 +151,7 @@ export default function InfrastructureSection() {
 
   const currentItem = INFRASTRUCTURE_ITEMS[activeIndex];
 
-
-    const renderSplitChars = (text: string) => {
+  const renderSplitChars = (text: string) => {
     return text.split("").map((char, i) => (
       <span
         key={i}
@@ -170,7 +166,6 @@ export default function InfrastructureSection() {
     ));
   };
 
-
   return (
     <SectionWrapper
       id="infrastructure"
@@ -181,10 +176,10 @@ export default function InfrastructureSection() {
       <div ref={sectionRef} className=" ">
         {/* Section heading */}
         <div className=" max-w-4xl text-left px-5 py-12 md:pt-10 md:pb-5">
-          <h2 className="font-heading max-w-3xl  text-3xl font-semibold leading-[1.06]  tracking-[-0.04em] text-[#1A1A1A] sm:text-3xl md:text-[34px]"
-          
-           ref={scrollTextRef}
-           >
+          <h2
+            className="font-heading max-w-3xl  text-3xl font-semibold leading-[1.06]  tracking-[-0.04em] text-[#1A1A1A] sm:text-3xl md:text-[34px]"
+            ref={scrollTextRef}
+          >
             Automation infrastructure{" "}
             <span className="text-[#999999] ">
               {renderSplitChars("built for reliability and scale")}
@@ -201,7 +196,7 @@ export default function InfrastructureSection() {
         {/* Flush two-column layout: accordion | framed illustration */}
         <div className=" grid grid-cols-1 items-stretch gap-0 border border-[#EAEAEA]  bg-[#FCFCFC] lg:mt-5 lg:grid-cols-12">
           {/* Accordion: top-aligned, with separators only between items */}
-          <div className="flex   flex-col divide-y divide-[#EAEAEA] border-b  border-[#EAEAEA] lg:col-span-5 lg:border-r last:border-t">
+          <div className="flex   flex-col divide-y divide-[#EAEAEA] border-b  border-[#EAEAEA] lg:col-span-4 lg:border-r last:border-t">
             {INFRASTRUCTURE_ITEMS.map((item, index) => {
               const isOpen = index === activeIndex;
 
@@ -237,7 +232,7 @@ export default function InfrastructureSection() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="text-sm font-normal leading-[1.55] text-[#737373]">
+                      <p className="text font-medium leading-[1.55] text-[#737373]">
                         {item.description}
                       </p>
                     </div>
@@ -260,7 +255,7 @@ export default function InfrastructureSection() {
           {/* Illustration area with a thin frame and four corner marks */}
           <div
             ref={svgStageRef}
-            className="relative isolate min-h-[340px] overflow-hidden bg-[#FCFCFC] sm:min-h-[420px] lg:col-span-7 lg:min-h-[500px]"
+            className="relative isolate min-h-[340px] overflow-hidden bg-[#FCFCFC] sm:min-h-[420px] lg:col-span-8 lg:min-h-[500px]"
           >
             <div
               aria-hidden="true"
