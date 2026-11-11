@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import FAQSection from "@/components/sections/FAQSection";
 import FeaturesTabsSection from "@/components/sections/FeaturesTabsSection";
 import HeroSection from "@/components/sections/hero/HeroSection";
 import InfrastructureSection from "@/components/sections/InfrastructureSection";
@@ -23,6 +24,7 @@ export default function Home() {
         <StatsSection />
         <IntegrationsSection />
         <PricingSection/>
+        <FAQSection/>
       </main>
     </div>
   );

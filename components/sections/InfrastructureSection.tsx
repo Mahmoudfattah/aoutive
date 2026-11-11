@@ -104,7 +104,7 @@ export default function InfrastructureSection() {
 
         colorTl.to(chars, {
           color: "#1A1A1A",
-          duration: 0.2, // مدة قصيرة جداً لكل حرف عشان ميحصلش تداخل كبير
+          duration: 0.02, // مدة قصيرة جداً لكل حرف عشان ميحصلش تداخل كبير
           stagger: {
             each: 0.03, // تتابع سريع يخلي الحرفين اللي عليه الدور هما بس اللي بيغمقوا
           },
