@@ -8,6 +8,8 @@ import  PricingSection from "@/components/sections/PricingSection";
 import StatsSection from "@/components/sections/StatsSection";
 import TrustedBySection from "@/components/sections/TrustedBySection";
 import UseCasesSection from "@/components/sections/UseCasesSection";
+import CtaSection from "../components/sections/CtaSection";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -23,9 +25,11 @@ export default function Home() {
         <UseCasesSection />
         <StatsSection />
         <IntegrationsSection />
-        <PricingSection/>
-        <FAQSection/>
+        <PricingSection />
+        <FAQSection />
+        <CtaSection />
       </main>
+      <Footer/>
     </div>
   );
 }
